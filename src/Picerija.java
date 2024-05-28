@@ -44,7 +44,7 @@ public class Picerija {
                 jaunsPasutijums();
                 break;
             case 1:
-                skatitiesPasutijumus();
+                //skatitiesPasutijumus();
                 break;
             case 2:
                 System.exit(0);
@@ -72,6 +72,36 @@ public class Picerija {
         String pica = (String) JOptionPane.showInputDialog(null, "Izvēlieties picu:",
                 "Picas izvēle", JOptionPane.QUESTION_MESSAGE, null, picas, picas[0]);
         if (pica == null) return;
+        
+        String[] izmeri = new String[3];
+        switch (pica) {
+            case "Margarita":
+                izmeri[0] = "20 cm - 4.99 EUR";
+                izmeri[1] = "30 cm - 7.99 EUR";
+                izmeri[2] = "50 cm - 9.99 EUR";
+                break;
+            case "Pepperoni":
+                izmeri[0] = "20 cm - 5.49 EUR";
+                izmeri[1] = "30 cm - 8.49 EUR";
+                izmeri[2] = "50 cm - 11.99 EUR";
+                break;
+            case "Havaju":
+                izmeri[0] = "20 cm - 5.99 EUR";
+                izmeri[1] = "30 cm - 8.99 EUR";
+                izmeri[2] = "50 cm - 12.49 EUR";
+                break;
+            case "Čorizo":
+            	izmeri[0] = "20 cm - 6.99 EUR";
+                izmeri[1] = "30 cm - 9.99 EUR";
+                izmeri[2] = "50 cm - 12.99 EUR";
+            	break;
+            case "Vezuva":
+            	izmeri[0] = "20 cm - 5.29 EUR";
+                izmeri[1] = "30 cm - 5.99 EUR";
+                izmeri[2] = "50 cm - 7.69 EUR";
+            	break;
+            	
+        }
 	}
 }
 

@@ -1,8 +1,15 @@
+import java.util.List;
 
 public class Picerija {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+    static class Pasutijums {
+        String vards;
+        String telefons;
+        String pica;
+        String izmers;
+        List<String> toppingi;
+        double cena;
 
 	}
 

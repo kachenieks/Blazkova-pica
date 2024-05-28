@@ -52,7 +52,26 @@ public class Picerija {
         }
     }
 }
+    private static void jaunsPasutijums() {
+        String vards;
+        while (true) {
+            vards = JOptionPane.showInputDialog("Ievadiet savu vārdu (vismaz 3 burti):");
+            if (vards == null) return;
+            if (vards.matches("[a-zA-ZāčēģīķļņšūžĀČĒĢĪĶĻŅŠŪŽ]{3,}")) break;
+            JOptionPane.showMessageDialog(null, "Vārdam jāsatur vismaz 3 burti.");
+        }
+        String telefons;
+        while (true) {
+            telefons = JOptionPane.showInputDialog("Ievadiet savu telefona numuru (tieši 8 cipari):");
+            if (telefons == null) return; 
+            if (telefons.matches("\\d{8}")) break;
+            JOptionPane.showMessageDialog(null, "Telefona numuram jābūt tieši 8 cipariem un saturēt tikai ciparus.");
+        }
 
+        String[] picas = {"Margarita", "Pepperoni", "Havaju", "Čorizo", "Vezuva"};
+        String pica = (String) JOptionPane.showInputDialog(null, "Izvēlieties picu:",
+                "Picas izvēle", JOptionPane.QUESTION_MESSAGE, null, picas, picas[0]);
+        if (pica == null) return;
 	}
-
+}
 

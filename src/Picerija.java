@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Picerija {
 
@@ -101,6 +104,34 @@ public class Picerija {
                 izmeri[2] = "50 cm - 7.69 EUR";
             	break;
             	
+        }
+        
+        String izmers = (String) JOptionPane.showInputDialog(null, "Izvēlieties picas izmēru:",
+                "Picas izmērs", JOptionPane.QUESTION_MESSAGE, null, izmeri, izmeri[0]);
+        if (izmers == null) return;
+
+        double picasCena = Double.parseDouble(izmers.split(" - ")[1].replace(" EUR", ""));
+
+        String[] toppinguOpcijas = {"Siers - 1 EUR", "Šampinjoni - 1 EUR", "Sīpoli - 1 EUR", "Olīvas - 1 EUR"};
+        JCheckBox[] toppingiCheckboxes = new JCheckBox[toppinguOpcijas.length];
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        for (int i = 0; i < toppinguOpcijas.length; i++) {
+            toppingiCheckboxes[i] = new JCheckBox(toppinguOpcijas[i]);
+            panel.add(toppingiCheckboxes[i]);
+        }
+
+        int result = JOptionPane.showConfirmDialog(null, panel, "Izvēlieties toppingus", JOptionPane.OK_CANCEL_OPTION);
+        if (result != JOptionPane.OK_OPTION) return;
+
+        List<String> toppingi = new ArrayList<>();
+        double papildinajumuCena = 0;
+        for (JCheckBox checkbox : toppingiCheckboxes) {
+            if (checkbox.isSelected()) {
+                toppingi.add(checkbox.getText());
+                papildinajumuCena += 1;
+            }
         }
 	}
 }

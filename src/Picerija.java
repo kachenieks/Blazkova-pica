@@ -3,8 +3,11 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Pica.Pasutijums;
 
 public class Picerija {
 
@@ -13,15 +16,15 @@ public class Picerija {
         String telefons;
         String pica;
         String izmers;
-        List<String> toppingi;
+        List<String> toppingu;
         double cena;
         
-        public Pasutijums(String vards, String telefons, String pica, String izmers, List<String> toppingi, double cena) {
+        public Pasutijums(String vards, String telefons, String pica, String izmers, List<String> toppingu, double cena) {
             this.vards = vards;
             this.telefons = telefons;
             this.pica = pica;
             this.izmers = izmers;
-            this.toppingi = toppingi;
+            this.toppingu = toppingu;
             this.cena = cena;
         }
         
@@ -30,7 +33,7 @@ public class Picerija {
             return "Vārds: " + vards + "\n" +
                    "Telefons: " + telefons + "\n" +
                    "Pica: " + pica + " (" + izmers + ")\n" +
-                   "Toppingi: " + toppingi + "\n" +
+                   "toppingu: " + toppingu + "\n" +
                    "Cena: " + cena + " EUR\n";
         }
     }
@@ -47,7 +50,7 @@ public class Picerija {
                 jaunsPasutijums();
                 break;
             case 1:
-                //skatitiesPasutijumus();
+            	pasutijumuApskate();
                 break;
             case 2:
                 System.exit(0);
@@ -113,26 +116,47 @@ public class Picerija {
         double picasCena = Double.parseDouble(izmers.split(" - ")[1].replace(" EUR", ""));
 
         String[] toppinguOpcijas = {"Siers - 1 EUR", "Šampinjoni - 1 EUR", "Sīpoli - 1 EUR", "Olīvas - 1 EUR"};
-        JCheckBox[] toppingiCheckboxes = new JCheckBox[toppinguOpcijas.length];
+        JCheckBox[] toppinguCheckboxes = new JCheckBox[toppinguOpcijas.length];
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         for (int i = 0; i < toppinguOpcijas.length; i++) {
-            toppingiCheckboxes[i] = new JCheckBox(toppinguOpcijas[i]);
-            panel.add(toppingiCheckboxes[i]);
+            toppinguCheckboxes[i] = new JCheckBox(toppinguOpcijas[i]);
+            panel.add(toppinguCheckboxes[i]);
         }
 
         int result = JOptionPane.showConfirmDialog(null, panel, "Izvēlieties toppingus", JOptionPane.OK_CANCEL_OPTION);
         if (result != JOptionPane.OK_OPTION) return;
 
-        List<String> toppingi = new ArrayList<>();
-        double papildinajumuCena = 0;
-        for (JCheckBox checkbox : toppingiCheckboxes) {
+        List<String> toppingu = new ArrayList<>();
+        double toppinguCena = 0;
+        for (JCheckBox checkbox : toppinguCheckboxes) {
             if (checkbox.isSelected()) {
-                toppingi.add(checkbox.getText());
-                papildinajumuCena += 1;
+                toppingu.add(checkbox.getText());
+                toppinguCena += 1;
             }
         }
-	}
+        double totalCena = picasCena + toppinguCena;
+        Pasutijums pasutijums = new Pasutijums(vards, telefons, pica, izmers.split(" - ")[0], toppingu, totalCena);
+        pasutijumi.add(pasutijums);
+
+        JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopējā cena: " + totalCena + " EUR");
+    }
+
+    private static void pasutijumuApskate() {
+        if (pasutijumi.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nav veikti pasūtījumi.");
+            return;
+        }
+
+        StringBuilder pasutijumuSaraksts = new StringBuilder("<html><body>");
+        for (Pasutijums pasutijums : pasutijumi) {
+            pasutijumuSaraksts.append("<p>").append(pasutijums.toString().replace("\n", "<br>")).append("</p><hr>");
+        }
+        pasutijumuSaraksts.append("</body></html>");
+
+        JOptionPane.showMessageDialog(null, new JLabel(pasutijumuSaraksts.toString()));
+    }
 }
+
 

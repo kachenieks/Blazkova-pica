@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -47,7 +48,7 @@ public class Picerija {
                 jaunsPasutijums();
                 break;
             case 1:
-                //skatitiesPasutijumus();
+            	apskatitPasutijumu();
                 break;
             case 2:
                 System.exit(0);
@@ -133,6 +134,26 @@ public class Picerija {
                 papildinajumuCena += 1;
             }
         }
-	}
+        double totalCena = picasCena + papildinajumuCena;
+        Pasutijums pasutijums = new Pasutijums(vards, telefons, pica, izmers.split(" - ")[0], toppingi, totalCena);
+        pasutijumi.add(pasutijums);
+
+        JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopējā cena: " + totalCena + " EUR");
+    }
+
+    private static void apskatitPasutijumu() {
+        if (pasutijumi.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nav veikti pasūtījumi.");
+            return;
+        }
+
+        StringBuilder pasutijumuSaraksts = new StringBuilder("<html><body>");
+        for (Pasutijums pasutijums : pasutijumi) {
+            pasutijumuSaraksts.append("<p>").append(pasutijums.toString().replace("\n", "<br>")).append("</p><hr>");
+        }
+        pasutijumuSaraksts.append("</body></html>");
+
+        JOptionPane.showMessageDialog(null, new JLabel(pasutijumuSaraksts.toString()));
+    }
 }
 

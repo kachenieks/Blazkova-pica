@@ -50,7 +50,11 @@ public class Picerija {
                 jaunsPasutijums();
                 break;
             case 1:
+<<<<<<< HEAD
             	pasutijumuApskate();
+=======
+            	apskatitPasutijumu();
+>>>>>>> TestesanasZars
                 break;
             case 2:
                 System.exit(0);
@@ -136,14 +140,23 @@ public class Picerija {
                 toppinguCena += 1;
             }
         }
+<<<<<<< HEAD
         double totalCena = picasCena + toppinguCena;
         Pasutijums pasutijums = new Pasutijums(vards, telefons, pica, izmers.split(" - ")[0], toppingu, totalCena);
+=======
+        double totalCena = picasCena + papildinajumuCena;
+        Pasutijums pasutijums = new Pasutijums(vards, telefons, pica, izmers.split(" - ")[0], toppingi, totalCena);
+>>>>>>> TestesanasZars
         pasutijumi.add(pasutijums);
 
         JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopējā cena: " + totalCena + " EUR");
     }
 
+<<<<<<< HEAD
     private static void pasutijumuApskate() {
+=======
+    private static void apskatitPasutijumu() {
+>>>>>>> TestesanasZars
         if (pasutijumi.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nav veikti pasūtījumi.");
             return;

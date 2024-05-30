@@ -1,4 +1,5 @@
-#Blažkovas picērija
+# Blažkovas picērija
+### Programma, kurā iespējams iegādāties picas
 
 ![Katrinas Pizza](https://github.com/kachenieks/Blazkova-pica/assets/168059906/04858494-1061-4260-9079-11558df138a4)
 
